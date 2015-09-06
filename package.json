@@ -1,0 +1,25 @@
+{
+    "name": "pars",
+    "version": "0.1.0",
+    "description": "A Chinese localized lib for parsing text for specific infos",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/4gifted/pars.git"
+    },
+    "files": [
+        "lib"
+    ],
+    "keywords": [
+        "parser",
+        "Chinese",
+        "locale"
+    ],
+    "author": "4gifted",
+    "license": "MIT",
+    "homepage": "https://github.com/4gifted/pars",
+    "devDependencies": {
+        "eslint": "latest",
+        "babel": "latest",
+        "babel-eslint": "latest"
+    }
+}
