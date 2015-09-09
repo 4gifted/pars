@@ -10,7 +10,7 @@ We'll publish package to NPM soon
 ## Bower
 We'll publish package to bower repo soon
 
-# Document
+# API Usage Guidelines
 ## APIs Compatible with [Knwl.js](https://github.com/loadfive/Knwl.js/)
 **Pars will NOT load any default plugins**
 
@@ -47,6 +47,32 @@ We'll publish package to bower repo soon
     //the position (in words) of the result in the String
     found // Number
   }] = instance.get('dates');
+```
+## Pars specific APIs
+- Instantiation
+```javascript
+  var langCode = 'zh-cn'; // Simplified Chinese
+  var datesPlugin = require('plugins/path');
+  var instance = new Pars({
+    lang: langCode, 
+    // plugins
+    plugins: {
+      // register plugin 'dates'
+      dates: datesPlugin
+    }
+    // other options
+  });
+```
+
+- Parse out infos
+```javascript
+  // 'dates' function is assigned when given plugin is loaded successfully
+  var dateInfo = instance.dates('target string');
+  if (dateInfo instanceof DateInfo /* plugin defined type */) {
+    // parse out successfully and you can access date property from the return object
+  } else if (dateInfo instanceof NotFound /* Common type */) {
+    // do something
+  }
 ```
 
 # License
