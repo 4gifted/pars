@@ -1,0 +1,14 @@
+environment:
+  nodejs_version: "0.10"
+
+install:
+  - npm install
+
+test_script:
+  - node --version
+  - npm --version
+  # run eslint
+  - grunt eslint
+  # run test
+
+build: off
