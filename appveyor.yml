@@ -1,7 +1,11 @@
+# AppVeyor file
+# http://www.appveyor.com/docs/appveyor-yml
+
 environment:
   nodejs_version: "0.10"
 
 install:
+  - npm install -g grunt-cli
   - npm install
 
 test_script:
