@@ -1,4 +1,6 @@
 # pars.js
+[![Build status](https://ci.appveyor.com/api/projects/status/hski7kl69b54gee1?svg=true)](https://ci.appveyor.com/project/0of/pars)
+
 A Chinese localized JS lib for parsing text for specific infos.
 Inspired by Knwl(https://github.com/loadfive/Knwl.js/) we devote to bring the pars.js **API-level compatible with [Knwl](https://github.com/loadfive/Knwl.js/)** 
 in order to parsing out Chinese text easily and accurately for specific infomation
