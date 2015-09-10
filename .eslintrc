@@ -1,16 +1,16 @@
 {
     "parser": "babel-eslint",
     "rules": {
-      "indent": [2, 4],
-      "linebreak-style": [2, "unix"],
-      "semi": [2, "always"],
-      "no-trailing-spaces": [2],
-      "space-before-function-paren": [2, "always"]
+        "indent": [2, 4],
+        "linebreak-style": [2, "unix"],
+        "semi": [2, "always"],
+        "no-trailing-spaces": [2],
+        "space-before-function-paren": [2, "always"]
     },
     "env": {
-      "browser": true,
-      "node": true
+        "browser": true,
+        "node": true,
+        "mocha": true
     },
     "extends": "eslint:recommended"
-  }
 }

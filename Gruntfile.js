@@ -4,7 +4,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         watch: {
             scripts: {
-                files: ['lib/*.js'],
+                files: ['lib/*.js', 'test/*.js'],
                 tasks: ['eslint'],
                 options: {
                     spawn: false
@@ -12,15 +12,15 @@ module.exports = function (grunt) {
             }
         },
         eslint: {
-            lib: {
-                src: ['lib/*.js']
+            target: {
+                src: ['lib/*.js', 'test/*.js']
             }
         }
     });
 
     grunt.event.on('watch', function (action, filepath) {
         // only update the changed files
-        grunt.config('jshint.lib.src', filepath);
+        grunt.config('jshint.target.src', filepath);
     });
 
     grunt.registerTask('eslint', 'eslint:lib');
