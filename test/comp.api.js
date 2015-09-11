@@ -49,8 +49,8 @@ describe('Access compatible APIs', () => {
         function NonEnglishPlugin () {
             this.languages = {
                 english: false
-            }
-        };
+            };
+        }
 
         let pars = new Pars('english');
         pars.init('any');
@@ -72,7 +72,7 @@ describe('Access compatible APIs', () => {
     });
 
     it ('should invoke the plugins `calls` with given arguments', () => {
-        let pluginSpy = sinon.spy({ calls: (plugin, a, b, c) => {} }, "calls");
+        let pluginSpy = sinon.spy({ calls: () => {} }, "calls");
         function Plugin () {
             return pluginSpy;
         }
