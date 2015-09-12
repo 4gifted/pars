@@ -6,7 +6,9 @@
     "type": "git",
     "url": "https://github.com/4gifted/pars.git"
   },
-  "test": "grunt test",
+  "scripts": {
+    "test": "grunt test"
+  },
   "files": [
     "lib"
   ],
