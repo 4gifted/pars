@@ -3,7 +3,7 @@
 var should  = require("should"),
     sinon = require('sinon');
 
-var Pars = require('compati-pars');
+var Pars = require('../lib/compati-pars');
 
 describe('Access compatible APIs', () => {
     it ('should instantiate when given correct language', () => {
@@ -11,9 +11,12 @@ describe('Access compatible APIs', () => {
         should(pars).be.an.instanceof(Pars);
     });
 
-    it ('should instantiate return null when given unsupported language', () => {
-        let pars = new Pars('français');
-        should(pars).not.be.ok;
+    it ('should throw exception when not given language', () => {
+        should(() => { new Pars(undefined); }).throw(Error);
+    });
+
+    it ('should throw exception when given unsupported language', () => {
+        should(() => { new Pars('français'); }).throw(Error);
     });
 
     it ('should return an array when calling `init`', () => {
@@ -58,23 +61,29 @@ describe('Access compatible APIs', () => {
     });
 
     it ('should invoke the plugins `calls`', () => {
-        let pluginSpy = sinon.spy({ calls: () => {} }, "calls");
-        function VoidPlugin () {
-            return pluginSpy;
+        let pluginSpy = sinon.spy();
+        function Plugin () {
+            this.languages = {
+                english: true
+            };
+            this.calls = pluginSpy.bind(this);
         }
 
         let pars = new Pars('english');
         pars.init('any');
-        pars.register('void', VoidPlugin);
+        pars.register('void', Plugin);
         pars.get('void');
 
         should(pluginSpy.calledOnce).be.true;
     });
 
     it ('should invoke the plugins `calls` with given arguments', () => {
-        let pluginSpy = sinon.spy({ calls: () => {} }, "calls");
+        let pluginSpy = sinon.spy();
         function Plugin () {
-            return pluginSpy;
+            this.languages = {
+                english: true
+            };
+            this.calls = pluginSpy.bind(this);
         }
 
         let pars = new Pars('english');
@@ -87,9 +96,12 @@ describe('Access compatible APIs', () => {
     });
 
     it ('should return false when the plugins `calls` throw an exception', () => {
-        let pluginSpy = sinon.spy({ calls: () => { throw new Error('Some error'); } }, "calls");
+        let pluginSpy = sinon.spy(() => { throw new Error('Some error'); });
         function Plugin () {
-            return pluginSpy;
+            this.languages = {
+                english: true
+            };
+            this.calls = pluginSpy.bind(this);
         }
 
         let pars = new Pars('english');

@@ -15,15 +15,25 @@ module.exports = function (grunt) {
             target: {
                 src: ['lib/*.js', 'test/*.js']
             }
+        },
+        mochaTest: {
+            test: {
+                options: {
+                    reporter: 'spec',
+                    require: 'babel/register'
+                },
+                src: ['./test/**/*.js']
+            }
         }
     });
 
     grunt.event.on('watch', function (action, filepath) {
         // only update the changed files
-        grunt.config('jshint.target.src', filepath);
+        grunt.config('eslint.target.src', filepath);
     });
 
-    grunt.registerTask('eslint', 'eslint:lib');
+    grunt.registerTask('eslint', 'eslint:target');
+    grunt.registerTask('test', ['eslint:target', 'mochaTest']);
 
     require('load-grunt-tasks')(grunt);
 };
