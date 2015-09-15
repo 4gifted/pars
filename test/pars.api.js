@@ -23,4 +23,8 @@ describe('Access Pars.js APIs', () => {
     it ('should throw exception when given invalid lang property', () => {
         should(() => { new Pars({ lang: 5 } ); }).throw(TypeError);
     });
+
+    it ('should throw exception when given invalid lang property', () => {
+        should(() => { new Pars({ lang: 5 } ); }).throw(TypeError);
+    });
 });
