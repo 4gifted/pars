@@ -12,6 +12,25 @@ We'll publish package to NPM soon
 ## Bower
 We'll publish package to bower repo soon
 
+# Build
+The output dir is **./dist**
+
+## Pars.js
+```shell
+# build debug pars.js
+grunt build-d
+# minimized and uglified pars.js
+grunt build
+```
+
+## Compatible with [Knwl.js](https://github.com/loadfive/Knwl.js/)
+```shell
+# build debug compati-pars.js
+grunt compati-build-d
+# minimized and uglified compati-pars.js
+grunt compati-build
+```
+
 # API Usage Guidelines
 ## APIs Compatible with [Knwl.js](https://github.com/loadfive/Knwl.js/)
 **Pars will NOT load any default plugins**
