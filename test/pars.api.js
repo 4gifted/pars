@@ -1,7 +1,8 @@
 'use strict';
 
 var should  = require("should"),
-    sinon = require('sinon');
+    sinon = require('sinon'),
+    chinesegen = require('chinesegen');
 
 var Pars = require('../lib/pars');
 
@@ -91,13 +92,11 @@ describe('Access Pars.js APIs', () => {
             }
         });
 
-        pars.fn('高级阶三论要克军色看水报，标难发用之C呀再抄品。' +
-                '商九历矿马往二精还，信并政速指治标代，三飞蠢车民期为？' +
-                '应风提万六它做前王，情断律标则分音，它然Z的革该抄。' +
-                '着高小太根领除道验面成，据单也深原矿什计风集，指去A置政箩抄题秧！');
+        let generated = chinesegen({count: 50});
+        pars.fn(generated.text);
 
         let sentencesMatcher = ({sentences}) => {
-            return 4 === sentences.length;
+            return generated.sentenceCount === sentences.length;
         };
 
         should(pluginSpy.calledOnce).be.true;

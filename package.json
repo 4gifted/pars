@@ -38,6 +38,7 @@
     "mocha": "^2.2.5",
     "should": "^6.0.3",
     "sinon": "^1.16.1",
-    "webpack": "latest"
+    "webpack": "latest",
+    "chinesegen": "latest"
   }
 }
