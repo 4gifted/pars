@@ -138,15 +138,11 @@ describe('Access Pars.js APIs', () => {
             }
         });
 
-        pars.fn('团专件先不年华相更，志该每理组入内市强，管-杯事需最杯。' +
-                '管包北论历海可规铁，子习这管我体与.' +
-                '带至两法设财询?' +
-                '相为精三造先道在白，广或接月强思入严门!' +
-                '接建枣变旷南求？' +
-                '发江目周装一，内你办生论京，没I百织高！');
+        let generated = chinesegen({count: 50, toleratedPeriods: '.?!'});
+        pars.fn(generated.text);
 
         let sentencesMatcher = ({sentences}) => {
-            return 6 === sentences.length;
+            return generated.sentenceCount === sentences.length;
         };
 
         should(pluginSpy.calledOnce).be.true;
