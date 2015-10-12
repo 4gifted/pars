@@ -41,13 +41,12 @@ module.exports = function (grunt) {
                 src: ['./test/**/*.js']
             }
         },
-        // dynamically config
-        webpack: {}
-    });
-
-    grunt.registerTask('webpackWrapped', function (target) {
-        grunt.config('webpack.' + target, require('./webpack.pars'));
-        grunt.task.run('webpack:' + target);
+        webpack: {
+            dist: '<%= $require.ref.webpack %>'
+        },
+        ref: {
+            webpack: require('path').join(__dirname, './webpack.pars.js')
+        }
     });
 
     grunt.event.on('watch', function (action, filepath) {
@@ -58,11 +57,12 @@ module.exports = function (grunt) {
     grunt.registerTask('eslint', 'eslint:target');
     grunt.registerTask('test', ['eslint:target', 'mochaTest']);
 
-    grunt.registerTask('build-d', ['env:dev', 'eslint:target', 'clean:build', 'webpackWrapped:dist']);
-    grunt.registerTask('build', ['env:prod', 'eslint:target', 'clean:build', 'webpackWrapped:dist']);
+    grunt.registerTask('build-d', ['env:dev', 'eslint:target', 'clean:build', 'webpack:dist']);
+    grunt.registerTask('build', ['env:prod', 'eslint:target', 'clean:build', 'webpack:dist']);
 
-    grunt.registerTask('compati-build-d', ['env:dev', 'env:compatible', 'eslint:target', 'clean:build', 'webpackWrapped:dist']);
-    grunt.registerTask('compati-build', ['env:prod', 'env:compatible', 'eslint:target', 'clean:build', 'webpackWrapped:dist']);
+    grunt.registerTask('compati-build-d', ['env:dev', 'env:compatible', 'eslint:target', 'clean:build', 'webpack:dist']);
+    grunt.registerTask('compati-build', ['env:prod', 'env:compatible', 'eslint:target', 'clean:build', 'webpack:dist']);
 
+    require('grunt-env-config')(grunt, {cache: true});
     require('load-grunt-tasks')(grunt);
 };
